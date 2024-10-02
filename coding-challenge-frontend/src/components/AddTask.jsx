@@ -17,7 +17,7 @@ export const AddTask = () => {
             return <h2 className='text-center'>Update Task Record</h2>
         }
         else {
-            return <h2 className='text-center'>Addnew Task Record</h2>
+            return <h2 className='text-center'>Add new Task Record</h2>
         }
     }
 
@@ -77,9 +77,10 @@ export const AddTask = () => {
     return (
         <div className="container">
 
-            <div className="card col-md-6 offset-md-3">
+            {/* <div className="card col-md-6 offset-md-3"> */}
+               
+                <form className="form-group card col-md-7 mb-2 p-4  mx-auto border-primary">
                 {changeTitle()}
-                <form className="form-group mb-2">
                     <div className="orm-group mb-2">
                         <label for="inputTitle" className="form-label"> Title </label>
                         <input type="text" value={title} onChange={(e) => { setTitle(e.target.value) }} className="form-control" id="inputTitle" placeholder='Enter Title for Task' />
@@ -123,6 +124,6 @@ export const AddTask = () => {
                 </form>
 
             </div>
-        </div>
+        // </div>
     )
 }

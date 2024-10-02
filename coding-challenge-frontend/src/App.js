@@ -29,8 +29,10 @@ function App() {
         <Route path="/" element={<Login />} /> {/* Redirect to login or home */}
       </Routes>
 
-      <Link className="btn btn-danger" to="/logout">Logout</Link>
-
+      {/* <Link className=" btn btn-outline-danger w-50 mt-2 " to="/logout">Logout</Link> */}
+      <div className="d-flex justify-content-center">
+        <Link className="btn btn-danger w-25 mt-2" to="/logout">Logout</Link>
+      </div>
 
     </div>
   );

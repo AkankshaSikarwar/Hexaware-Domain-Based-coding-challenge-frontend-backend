@@ -39,10 +39,15 @@ const Login = () => {
 
   return (
     <div className="container">
-       <div className="card col-md-8 p-3 mt-5 form-control border-primary">
+       {/* <div className="card col-md-8 p-3 mt-5 form-control border-primary">
+        <h2 className='text-center pt-2 mt-2'>Login</h2> */}
+        
+        {/* <div className="card col-md-4 mx-auto p-4 mt-5 form-control border-primary"> Adjusted width here */}
+        {/* <h2 className='text-center pt-2 mt-2'>Login</h2> */}
+
+        <form className="form-group card col-md-7 mb-2 p-5 m-5 mx-auto border-primary" onSubmit={userLogin}>
         <h2 className='text-center pt-2 mt-2'>Login</h2>
 
-        <form className="form-group mb-2 p-2 m-5" onSubmit={userLogin}>
           <div className="form-group mb-2">
             <label htmlFor="inputUsername" className="form-label">Username</label>
             <input
@@ -51,7 +56,7 @@ const Login = () => {
               onChange={(e) => setUsername(e.target.value)}
               className="form-control"
               id="inputUsername"
-              placeholder='Enter Username or Email'
+              placeholder='Enter Username'
               required
             />
           </div>
@@ -83,7 +88,7 @@ const Login = () => {
           {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
         </form>
       </div>
-    </div>
+    // </div>
   );
 };
 

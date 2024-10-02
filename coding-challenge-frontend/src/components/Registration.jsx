@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 
+import './background.css'
+
 import { useNavigate } from 'react-router-dom';
 import AuthService from '../services/AuthService';
 
@@ -53,10 +55,13 @@ const Registration = () => {
     };
 
     return (
+        // <div id='bg'>
         <div className="container">
-            <div className="card col-md-8 mt-5 p-3 form-control border-primary">
+            {/* <div className="card col-md-8 mt-5 p-3 form-control border-primary">
+                <h1 className='text-center'>Registration</h1> */}
+                {/* <form className="form-group mb-2"> */}
+                <form className="form-group card col-md-7 mb-2 p-5 m-5 mx-auto border-primary">
                 <h1 className='text-center'>Registration</h1>
-                <form className="form-group mb-2">
                     <div className="form-group mb-2">
                         <label htmlFor="inputUsername" className="form-label">Username</label><br />
                         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" id="inputUsername" placeholder='Enter Username' required />
@@ -85,7 +90,8 @@ const Registration = () => {
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                 </form>
             </div>
-        </div>
+        // </div>
+      
     );
 };
 
