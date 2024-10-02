@@ -51,14 +51,6 @@ class AuthService {
                 const username = decodedToken.sub; // Assuming 'sub' field is present in token
                 localStorage.setItem('username', username);
 
-                // Redirect based on role
-                // if (role === 'USER') {
-                //     navigate('/user-dashboard');
-                // } else if (role === 'OFFICER') {
-                //     navigate('/officer-dashboard');
-                // } else {
-                //     navigate('/login'); // Default or error handling for unrecognized roles
-                // }
                 navigate('/login')
             }
             return response.data; // Return response to handle in the component
