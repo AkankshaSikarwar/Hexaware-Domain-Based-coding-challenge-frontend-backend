@@ -9,9 +9,9 @@ const Logout = () => {
 
   useEffect (() => {
       console.log("useEffect fired")
-      AuthService.logoutUser(); // Remove JWT token from localStorage
+      AuthService.logoutUser(); 
     console.log("logoutUser")
-    navigate('/login'); // Redirect to login page after logout
+    navigate('/login'); 
   })
 
 

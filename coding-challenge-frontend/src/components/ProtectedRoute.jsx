@@ -7,14 +7,12 @@ const ProtectedRoute = () => {
   const location = useLocation();
   const token = localStorage.getItem('token');
 
-  // Check if the token is present and valid
   let isAuthenticated = false;
   if (token) {
     try {
       const decodedToken = jwtDecode(token);
-      const currentTime = Date.now() / 1000; // Get current time in seconds
+      const currentTime = Date.now() / 1000; 
 
-      // Ensure the token is not expired
       if (decodedToken.exp > currentTime) {
         isAuthenticated = true;
       }
@@ -23,7 +21,6 @@ const ProtectedRoute = () => {
     }
   }
 
-  // If authenticated, render the child component (Outlet)
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" state={{ from: location }} replace />;
 };
 

@@ -3,20 +3,19 @@ import axios from "axios";
 class TaskService {
     BASE_URL = "http://localhost:8080/api/tasks";
 
-     // Method to get the token from localStorage
      getToken() {
-        return localStorage.getItem('token'); // Change this to your token key
+        return localStorage.getItem('token'); 
     }
 
     getAllTasks() {
         return axios({
             method: 'get',
             url: this.BASE_URL + '/getall',
-            responseType: 'json', // Specify the expected response type
+            responseType: 'json', 
             headers: { 
                 'Access-Control-Allow-Origin': '*' ,
                 'Authorization': `Bearer ${this.getToken()}`
-            } // Custom headers if needed
+            } 
         });
     }
 
@@ -24,12 +23,12 @@ class TaskService {
         return axios({
             method: 'post',
             url: this.BASE_URL + '/add',
-            data: taskObj, // Task object as payload
+            data: taskObj, 
             headers: { 'Content-Type': 'application/json', 
                 'Access-Control-Allow-Origin': '*' ,
             'Authorization': `Bearer ${this.getToken()}`
-        }, // Custom headers
-            responseType: 'json' // Response type
+        }, 
+            responseType: 'json' 
         });
     }
 
@@ -37,13 +36,13 @@ class TaskService {
         return axios({
             method: 'put',
             url: this.BASE_URL + '/update/' + id,
-            data: taskObj, // Task object as payload
-            headers: { 'Content-Type': 'application/json', 'X-Custom-Header': 'foobar',
+            data: taskObj, 
+            headers: { 'Content-Type': 'application/json', 
+                'X-Custom-Header': 'foobar',
                  'Access-Control-Allow-Origin': '*' ,
                 'Authorization': `Bearer ${this.getToken()}`
             }, 
-                 // Custom headers
-            responseType: 'json' // Response type
+            responseType: 'json' 
         });
     }
 
@@ -51,10 +50,10 @@ class TaskService {
         return axios({
             method: 'get',
             url: this.BASE_URL + '/getbyid/' + id,
-            responseType: 'json', // Specify the expected response type
+            responseType: 'json',
             headers: { 'Access-Control-Allow-Origin': '*',
                 'Authorization': `Bearer ${this.getToken()}`
-             } // Custom headers if needed
+             } 
         });
     }
 
@@ -62,10 +61,10 @@ class TaskService {
         return axios({
             method: 'delete',
             url: this.BASE_URL + '/deletebyid/' + id,
-            responseType: 'json', // Specify the expected response type
+            responseType: 'json',
             headers: { 'Access-Control-Allow-Origin': '*' ,
                 'Authorization': `Bearer ${this.getToken()}`
-            } // Custom headers if needed
+            } 
         });
     }
 }

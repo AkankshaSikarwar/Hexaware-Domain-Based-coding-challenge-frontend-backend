@@ -16,28 +16,25 @@ const Registration = () => {
     const navigate = useNavigate();
 
     const registerUser = (e) => {
-        e.preventDefault(); // Prevent form submission
-        setLoading(true); // Show loading spinner
-        setError(null); // Clear any previous errors
+        e.preventDefault();
+        setLoading(true); 
+        setError(null); 
 
         console.log("registerUser function called...");
 
-        // Validate that the password and confirm password match
         if (password !== confirmPassword) {
-            setLoading(false); // Stop the loading spinner
+            setLoading(false); 
             setError("Passwords do not match.");
             return;
         }
 
-        // Create the user object from the form fields
         const userObj = { username, password };
 
-        // Call the AuthService for user registration
         AuthService.registerUser(userObj).then(
             (response) => {
                 console.log("Response received from register API: " + JSON.stringify(response.data));
-                setLoading(false); // Stop the loading spinner
-                navigate('/login'); // Redirect to login or dashboard
+                setLoading(false); 
+                navigate('/login'); 
             }
         ).catch((error) => {
             console.log("Error from register API: " + error);
@@ -49,8 +46,7 @@ const Registration = () => {
             } else {
                 setError("Registration failed. Please check your inputs.");
             }
-
-            setLoading(false); // Stop the loading spinner on error
+            setLoading(false); 
         });
     };
 
@@ -83,7 +79,6 @@ const Registration = () => {
                         </button>
                     </div>
 
-                    {/* Login link */}
                     <p className="text-center">
                         Already have an account? <span onClick={() => navigate('/login')} style={{ cursor: 'pointer', color: 'blue' }}>Login here</span>
                     </p>

@@ -24,7 +24,6 @@ export const AddTask = () => {
     useEffect(() => {
         console.log("useEffect fired...")
 
-        // this is to populate the value to the form
         if (id) {
             console.log("id received from url " + id)
             TaskService.findById(id).then((response) => {
@@ -62,7 +61,6 @@ export const AddTask = () => {
 
         else {
             console.log("task obj received from the form : " + JSON.stringify(taskObj))
-            // TaskService.saveTask(taskObj).then(
             TaskService.saveTask(taskObj).then(
                 (response) => {
                     console.log("Data received form save Task : " + response.data)
@@ -118,7 +116,7 @@ export const AddTask = () => {
 
                     <div className="form-group mb-2">
                         <button onClick={(e) => saveOrUpdateTask(e)} className="btn btn-primary"> Save </button>
-                        &nbsp;&nbsp;&nbsp;<Link to='/display' className='btn btn-danger'>Cancel</Link>
+                        &nbsp;&nbsp;&nbsp;<Link to='/dashboard/display-tasks' className='btn btn-danger'>Cancel</Link>
                     </div>
 
                 </form>

@@ -4,5 +4,5 @@ USE api_coding_challenge_task;
 
 SHOW TABLES;
 
-SELECT * FROM user;
+SELECT * FROM users;
 SELECT * FROM tasks;

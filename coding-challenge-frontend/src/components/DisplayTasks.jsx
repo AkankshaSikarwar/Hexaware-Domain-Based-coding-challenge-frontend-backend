@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 export const DisplayTasks = () => {
 
     const [tasks,setTasks] = useState([])
-    // component did mount & component did update
+  
     const navigate = useNavigate()
     const [deleteStatus,setDeleteStatus] = useState([false])
 
@@ -29,7 +29,6 @@ export const DisplayTasks = () => {
     useEffect(
         () => {
             console.log("useEffect fired...")
-            // TaskService.getAllTasks().then(
             TaskService.getAllTasks().then(
                 (response) => {
                     console.log("data received from getAllTasks()"+JSON.stringify(response.data))

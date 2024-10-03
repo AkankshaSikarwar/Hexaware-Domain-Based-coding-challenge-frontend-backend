@@ -7,24 +7,23 @@ import AuthService from '../services/AuthService';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null); // For handling login errors
-  const [loading, setLoading] = useState(false); // Loading state for button
+  const [error, setError] = useState(null); 
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const userLogin = (e) => {
-    e.preventDefault(); // Prevent default form submission
-    setLoading(true); // Show loading spinner
-    setError(null); // Clear any previous errors
+    e.preventDefault(); 
+    setLoading(true); 
+    setError(null); 
 
-    const loginObj = { username, password }; // Create the login object
+    const loginObj = { username, password }; 
 
     AuthService.loginUser(loginObj, navigate).then((response) => {
-      console.log('Logged in successfully:', response); // Log the response data
-      navigate('/dashboard/display-tasks'); // Redirect to user dashboard
+      console.log('Logged in successfully:', response); 
+      navigate('/dashboard/display-tasks'); 
     }).catch((error) => {
-      console.error('Login failed:', error); // Log the error
+      console.error('Login failed:', error); 
 
-      // Handle different types of errors and set messages accordingly
       if (!error.response) {
         setError('No server response');
       } else if (error.response.status === 401) {
@@ -33,7 +32,7 @@ const Login = () => {
         setError('Login failed. Please try again.');
       }
     }).finally(() => {
-      setLoading(false); // Stop the loading spinner
+      setLoading(false); 
     });
   };
 
@@ -80,12 +79,11 @@ const Login = () => {
             </button>
           </div>
 
-          {/* Registration link */}
           <p className="text-center">
             Don't have an account? <span onClick={() => navigate('/register')} style={{ cursor: 'pointer', color: 'blue' }}>Register here</span>
           </p>
 
-          {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
+          {error && <p style={{ color: 'red' }}>{error}</p>} 
         </form>
       </div>
     // </div>

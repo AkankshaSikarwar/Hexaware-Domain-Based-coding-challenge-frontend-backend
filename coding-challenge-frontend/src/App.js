@@ -14,19 +14,16 @@ function App() {
     <div className="App">
 
       <Routes>
-        {/* Public Routes */}
+
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
 
-        {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard/*" element={<Dashboard />} />
-
         </Route>
 
-        {/* Default Route */}
-        <Route path="/" element={<Login />} /> {/* Redirect to login or home */}
       </Routes>
 
       {/* <Link className=" btn btn-outline-danger w-50 mt-2 " to="/logout">Logout</Link> */}

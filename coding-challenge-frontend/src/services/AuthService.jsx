@@ -6,12 +6,11 @@ import { jwtDecode } from 'jwt-decode';
 const BASE_URL = 'http://localhost:8080/api/authenticate/';
 
 class AuthService {
-    // Method to get the token from localStorage
+
     getToken() {
-        return localStorage.getItem('token'); // Change this to your token key
+        return localStorage.getItem('token'); 
     }
 
-    // Register a user
     registerUser(userObj) {
         return axios({
             method: 'post',
@@ -28,8 +27,6 @@ class AuthService {
         });
     }
 
-
-    // Login a user and store JWT token
     loginUser(userObj, navigate) {
         return axios({
             method: 'post',
@@ -41,29 +38,29 @@ class AuthService {
             },
             // withCredentials: false
         }).then(response => {
-            const token = response.data.accessToken; // Assuming the token comes in accessToken field
+            const token = response.data.accessToken; 
             if (token) {
-                localStorage.setItem('token', token); // Store token in localStorage
+                localStorage.setItem('token', token); 
 
-                // Decode token to extract role
+               
                 const decodedToken = jwtDecode(token);
-                const role = decodedToken.role; // Assuming 'role' field is present in token
-                const username = decodedToken.sub; // Assuming 'sub' field is present in token
+                const role = decodedToken.role; 
+
+                const username = decodedToken.sub; 
                 localStorage.setItem('username', username);
 
                 navigate('/login')
             }
-            return response.data; // Return response to handle in the component
+            return response.data; 
         }).catch(error => {
-            throw error.response.data; // Handle error
+            throw error.response.data; 
         });
     }
 
-    // Log out user by removing token from localStorage
     logoutUser() {
-        localStorage.removeItem('token'); // Remove JWT token
-        localStorage.removeItem('username'); // Remove username
-        console.log("Logout: token and username removed from local storage");
+        localStorage.removeItem('token'); 
+        localStorage.removeItem('username'); 
+        console.log("Logout : token and username removed from local storage");
     }
 }
 
