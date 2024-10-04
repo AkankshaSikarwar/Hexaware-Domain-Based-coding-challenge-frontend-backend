@@ -1,7 +1,9 @@
 // src/components/LoginComponent.jsx
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AuthService from '../services/AuthService';
+import { AuthContext } from '../context/AuthProvider';
+import { useAuth } from './useAuth';
 
 
 const Login = () => {
@@ -10,6 +12,10 @@ const Login = () => {
   const [error, setError] = useState(null); 
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
+
+  const { setAuth } = useContext(AuthContext)
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/";
 
   const userLogin = (e) => {
     e.preventDefault(); 
@@ -20,6 +26,23 @@ const Login = () => {
 
     AuthService.loginUser(loginObj, navigate).then((response) => {
       console.log('Logged in successfully:', response); 
+      console.log('Logged in successfully:', JSON.stringify(response)); 
+
+      setAuth({
+        'username' : response.userDto.username,
+        'token' : response.accessToken,
+        'role' : response.userDto.role,
+      });
+      // setAuth({
+      //   'username' : response.data.userDto.username,
+      //   'token' : response.data.accessToken,
+      //   'role' : response.data.userDto.role,
+      // });
+      
+      
+      //  console.log("setAuth after update : "+ auth);
+      //  console.log("setAuth after update : "+ JSON.stringify(auth.response));
+
       navigate('/dashboard/display-tasks'); 
     }).catch((error) => {
       console.error('Login failed:', error); 

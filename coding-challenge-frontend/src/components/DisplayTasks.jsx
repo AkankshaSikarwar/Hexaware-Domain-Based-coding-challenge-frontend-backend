@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TaskService from '../services/TaskService'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from './useAuth'
 
 export const DisplayTasks = () => {
 
@@ -9,13 +10,18 @@ export const DisplayTasks = () => {
     const navigate = useNavigate()
     const [deleteStatus,setDeleteStatus] = useState([false])
 
+
+    const {auth}=useAuth();
+    const token=auth.token;
+    console.log("token from useAuth : "+token)
+
     const deleteTask = (id) => {
         console.log("Task id received in event handler "+id)
 
         const confirmDelete = window.confirm("Are you sure you want to delete this task?");
 
         if (confirmDelete) {
-        TaskService.deleteById(id).then(
+        TaskService.deleteById(id,token).then(
             (response) => {
                 console.log("data received from deleteById() "+JSON.stringify(response))
                 setDeleteStatus(!deleteStatus)
@@ -29,7 +35,7 @@ export const DisplayTasks = () => {
     useEffect(
         () => {
             console.log("useEffect fired...")
-            TaskService.getAllTasks().then(
+            TaskService.getAllTasks(token).then(
                 (response) => {
                     console.log("data received from getAllTasks()"+JSON.stringify(response.data))
                     console.log("type of data received from getAllTasks()"+typeof response.data)

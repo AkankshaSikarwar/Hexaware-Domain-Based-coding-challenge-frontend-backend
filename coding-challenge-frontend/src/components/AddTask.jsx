@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import TaskService from '../services/TaskService';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from './useAuth';
 
 export const AddTask = () => {
 
@@ -11,6 +12,10 @@ export const AddTask = () => {
     const [status, setStatus] = React.useState('');
     const navigate = useNavigate();
     const { id } = useParams();
+
+    const {auth}=useAuth();
+    const token=auth.token;
+    console.log("token from useAuth : "+token)
 
     const changeTitle = () => {
         if(id) {
@@ -26,7 +31,7 @@ export const AddTask = () => {
 
         if (id) {
             console.log("id received from url " + id)
-            TaskService.findById(id).then((response) => {
+            TaskService.findById(id,token).then((response) => {
                 console.log("response from findById() api " + JSON.stringify(response))
                 setTitle(response.data.title)
                 setDescription(response.data.description)
@@ -50,7 +55,7 @@ export const AddTask = () => {
 
         if (id) {
             console.log("id received from url " + id)
-            TaskService.updateTask(taskObj,id).then(
+            TaskService.updateTask(taskObj,id,token).then(
                 (response) => {
                     console.log("response from updateTask() api " + JSON.stringify(response))
                     navigate('/dashboard/display-tasks')
@@ -61,7 +66,7 @@ export const AddTask = () => {
 
         else {
             console.log("task obj received from the form : " + JSON.stringify(taskObj))
-            TaskService.saveTask(taskObj).then(
+            TaskService.saveTask(taskObj,token).then(
                 (response) => {
                     console.log("Data received form save Task : " + response.data)
                     navigate('/dashboard/display-tasks')
